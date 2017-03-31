@@ -9,7 +9,7 @@ namespace DataAccess.Interfaces
         IEnumerable<T> GetAll();
         void Create(T item);
         void Update(T item);
-        void Delete(T item);
+        void Delete(int id);
 
         IQueryable<T> Query { get; }
     }
