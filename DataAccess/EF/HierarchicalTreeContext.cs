@@ -10,5 +10,10 @@ namespace DataAccess.EF
 
         public DbSet<User> Users { get; set; }
         public DbSet<Country> Countries { get; set; }
+        public DbSet<Business> Businesses { get; set; }
+        public DbSet<Department> Departments { get; set; }
+        public DbSet<Family> Families { get; set; }
+        public DbSet<Offering> Offerings { get; set; }
+        public DbSet<Organization> Organizations { get; set; }
     }
 }
