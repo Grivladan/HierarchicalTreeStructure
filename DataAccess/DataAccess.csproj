@@ -152,12 +152,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EF\HierarchicalTreeContext.cs" />
+    <Compile Include="Entities\Business.cs" />
     <Compile Include="Entities\Country.cs" />
+    <Compile Include="Entities\Department.cs" />
+    <Compile Include="Entities\Family.cs" />
+    <Compile Include="Entities\Offering.cs" />
+    <Compile Include="Entities\Organization.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Interfaces\IEntity.cs" />
+    <Compile Include="Interfaces\IUnitOfWork.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
+    <Compile Include="Interfaces\IRepositoryFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\Repository.cs" />
+    <Compile Include="Repository\RepositoryFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
