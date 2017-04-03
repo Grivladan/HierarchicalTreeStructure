@@ -9,12 +9,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using WebHost.Data;
 using WebHost.Models;
 using WebHost.Services;
 using SimpleInjector;
 using DataAccess.Interfaces;
 using DataAccess.Repository;
+using DataAccess.EF;
 
 namespace WebHost
 {
@@ -39,12 +39,12 @@ namespace WebHost
             builder.AddEnvironmentVariables();
             Configuration = builder.Build();
 
-            var container = new Container();
+           /* var container = new Container();
             container.Register<DbContext, DbContext>();
             container.Register(typeof(IRepository<>), typeof(Repository<>));
             container.Register<IRepositoryFactory, RepositoryFactory>();
             container.Register<IUnitOfWork, UnitOfWork>(Lifestyle.Singleton);
-            container.Verify();
+            container.Verify();*/
         }
 
         public IConfigurationRoot Configuration { get; }
