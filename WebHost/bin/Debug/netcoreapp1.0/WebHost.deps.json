@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v1.0",
-    "signature": "687b073dee277ff61dc4809246982b4ce30dbb68"
+    "signature": "88d50f2f07433891c3545e1e5aaa8a19c9095039"
   },
   "compilationOptions": {
     "defines": [
@@ -16,6 +16,7 @@
     ".NETCoreApp,Version=v1.0": {
       "WebHost/1.0.0": {
         "dependencies": {
+          "DataAccessCore": "1.0.0",
           "Microsoft.NETCore.App": "1.0.1",
           "Microsoft.ApplicationInsights.AspNetCore": "1.0.0",
           "Microsoft.AspNetCore.Authentication.Cookies": "1.0.0",
@@ -35,7 +36,8 @@
           "Microsoft.Extensions.Logging.Console": "1.0.0",
           "Microsoft.Extensions.Logging.Debug": "1.0.0",
           "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
-          "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0"
+          "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0",
+          "SimpleInjector": "4.0.0"
         },
         "runtime": {
           "WebHost.dll": {}
@@ -1919,6 +1921,18 @@
           }
         }
       },
+      "SimpleInjector/4.0.0": {
+        "dependencies": {
+          "NETStandard.Library": "1.6.0",
+          "System.ComponentModel": "4.0.1"
+        },
+        "runtime": {
+          "lib/netstandard1.3/SimpleInjector.dll": {}
+        },
+        "compile": {
+          "lib/netstandard1.3/SimpleInjector.dll": {}
+        }
+      },
       "System.Collections.NonGeneric/4.0.1": {
         "dependencies": {
           "System.Diagnostics.Debug": "4.0.11",
@@ -2161,6 +2175,19 @@
         },
         "compile": {
           "lib/netstandard1.0/System.Text.Encodings.Web.dll": {}
+        }
+      },
+      "DataAccessCore/1.0.0": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.SqlServer": "1.0.1",
+          "NETStandard.Library": "1.6.0",
+          "SimpleInjector": "4.0.0"
+        },
+        "runtime": {
+          "DataAccessCore.dll": {}
+        },
+        "compile": {
+          "DataAccessCore.dll": {}
         }
       },
       "Libuv/1.9.0": {
@@ -4413,6 +4440,11 @@
       "serviceable": true,
       "sha512": "sha512-ykiYCf/0hIc0xm+g6bVX8nw9St5Ool+r4US+B+56Lv/GFnDG5G9BK4n7WkrwEpuWV3XjMn38oHgHOnNMzBVNKA=="
     },
+    "SimpleInjector/4.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-mHMeyQdsCeFAA6hwFmfzY/OBpdj8aX1ovFsjE7E4f6brDo/qjd9gECTY884AC8Ap/JoXzCQ+Pm7fxf2pzBWMuA=="
+    },
     "System.Collections.NonGeneric/4.0.1": {
       "type": "package",
       "serviceable": true,
@@ -4472,6 +4504,11 @@
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-TWZnuiJgPDAEEUfobD7njXvSVR2Toz+jvKWds6yL4oSztmKQfnWzucczjzA+6Dv1bktBdY71sZW1YN0X6m9chQ=="
+    },
+    "DataAccessCore/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     },
     "Libuv/1.9.0": {
       "type": "package",

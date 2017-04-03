@@ -1,7 +1,8 @@
-﻿{
+{
   "userSecretsId": "aspnet-WebHost-084a5f37-a661-4e11-a5a3-349d03d8cf8d",
 
   "dependencies": {
+    "DataAccessCore": "1.0.0-*",
     "Microsoft.NETCore.App": {
       "version": "1.0.1",
       "type": "platform"
@@ -41,10 +42,11 @@
       "version": "1.0.0-preview2-final",
       "type": "build"
     },
-    "Microsoft.VisualStudio.Web.CodeGenerators.Mvc":  {
+    "Microsoft.VisualStudio.Web.CodeGenerators.Mvc": {
       "version": "1.0.0-preview2-final",
       "type": "build"
-    }
+    },
+    "SimpleInjector": "4.0.0"
   },
 
   "tools": {
