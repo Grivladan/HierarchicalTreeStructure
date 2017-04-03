@@ -12,6 +12,9 @@ using Microsoft.Extensions.Logging;
 using WebHost.Data;
 using WebHost.Models;
 using WebHost.Services;
+using SimpleInjector;
+using DataAccess.Interfaces;
+using DataAccess.Repository;
 
 namespace WebHost
 {
@@ -35,6 +38,13 @@ namespace WebHost
 
             builder.AddEnvironmentVariables();
             Configuration = builder.Build();
+
+            var container = new Container();
+            container.Register<DbContext, DbContext>();
+            container.Register(typeof(IRepository<>), typeof(Repository<>));
+            container.Register<IRepositoryFactory, RepositoryFactory>();
+            container.Register<IUnitOfWork, UnitOfWork>(Lifestyle.Singleton);
+            container.Verify();
         }
 
         public IConfigurationRoot Configuration { get; }

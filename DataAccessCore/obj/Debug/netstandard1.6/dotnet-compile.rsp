@@ -88,6 +88,7 @@ C:\Users\Vladyslav\Desktop\HierarchicalTreeStructure\DataAccessCore\Entities\Fam
 C:\Users\Vladyslav\Desktop\HierarchicalTreeStructure\DataAccessCore\Entities\Offering.cs
 C:\Users\Vladyslav\Desktop\HierarchicalTreeStructure\DataAccessCore\Entities\Organization.cs
 C:\Users\Vladyslav\Desktop\HierarchicalTreeStructure\DataAccessCore\Entities\User.cs
+C:\Users\Vladyslav\Desktop\HierarchicalTreeStructure\DataAccessCore\Infrastructure\DependencyResolver.cs
 C:\Users\Vladyslav\Desktop\HierarchicalTreeStructure\DataAccessCore\Interfaces\IEntity.cs
 C:\Users\Vladyslav\Desktop\HierarchicalTreeStructure\DataAccessCore\Interfaces\IRepository.cs
 C:\Users\Vladyslav\Desktop\HierarchicalTreeStructure\DataAccessCore\Interfaces\IRepositoryFactory.cs
