@@ -1,4 +1,4 @@
-﻿{
+{
   "userSecretsId": "aspnet-HierarchicalTree-8417928c-1da8-4ba9-9297-ea907bd28597",
 
   "dependencies": {
@@ -41,10 +41,13 @@
       "version": "1.0.0-preview2-final",
       "type": "build"
     },
-    "Microsoft.VisualStudio.Web.CodeGenerators.Mvc":  {
+    "Microsoft.VisualStudio.Web.CodeGenerators.Mvc": {
       "version": "1.0.0-preview2-final",
       "type": "build"
-    }
+    },
+    "Microsoft.AspNetCore.Authentication": "1.1.1",
+    "Microsoft.AspNetCore.Authentication.Google": "1.0.0",
+    "Microsoft.AspNetCore.Authentication.Facebook": "1.0.0"
   },
 
   "tools": {

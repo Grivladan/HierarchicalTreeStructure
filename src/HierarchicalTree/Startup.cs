@@ -12,6 +12,8 @@ using Microsoft.Extensions.Logging;
 using HierarchicalTree.Data;
 using HierarchicalTree.Models;
 using HierarchicalTree.Services;
+using HierarchicalTree.Interfaces;
+using HierarchicalTree.Repository;
 
 namespace HierarchicalTree
 {
@@ -52,6 +54,11 @@ namespace HierarchicalTree
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
+
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddScoped<IRepositoryFactory, RepositoryFactory>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
             services.AddMvc();
 
             // Add application services.
@@ -83,6 +90,12 @@ namespace HierarchicalTree
             app.UseStaticFiles();
 
             app.UseIdentity();
+
+            app.UseFacebookAuthentication(new FacebookOptions()
+            {
+                AppId = Configuration["Authentication:Facebook:AppId"],
+                AppSecret = Configuration["Authentication:Facebook:AppSecret"]
+            });
 
             // Add external authentication middleware below. To configure them please see http://go.microsoft.com/fwlink/?LinkID=532715
 
