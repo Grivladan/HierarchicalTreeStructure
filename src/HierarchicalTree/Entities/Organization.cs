@@ -1,6 +1,6 @@
 ﻿using HierarchicalTree.Interfaces;
 using HierarchicalTree.Models;
-using System.Collections;
+using System.Collections.Generic;
 
 namespace HierarchicalTree.Entities
 {
@@ -20,6 +20,6 @@ namespace HierarchicalTree.Entities
         public OrganizationType? Type { get; set; }
         public ApplicationUser Owner { get; set; }
         public string OwnerId { get; set; }
-        public virtual ICollection Countries { get; set; }
+        public virtual ICollection<Country> Countries { get; set; }
     }
 }

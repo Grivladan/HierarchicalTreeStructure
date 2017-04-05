@@ -39,6 +39,13 @@ namespace HierarchicalTree.Controllers
             {
                 return NotFound();
             }
+
+            //validation
+            if (family.Offerings.LastOrDefault(x => x.Name == offering.Name) != null)
+            {
+                return BadRequest();
+            }
+
             offering.Family = family;
             offering.FamilyId = familyId;
 

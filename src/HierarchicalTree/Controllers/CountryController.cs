@@ -39,6 +39,13 @@ namespace HierarchicalTree.Controllers
             {
                 return NotFound();
             }
+         
+            //validation
+            if(organization.Countries.LastOrDefault(x => x.Name == country.Name) != null)
+            {
+                return BadRequest();
+            }
+                           
             country.Organization = organization;
 
             _unitOfWork.Countries.Create(country);

@@ -39,6 +39,13 @@ namespace HierarchicalTree.Controllers
             {
                 return NotFound();
             }
+
+            //validation
+            if (offering.Departments.LastOrDefault(x => x.Name == department.Name) != null)
+            {
+                return BadRequest();
+            }
+
             department.Offering = offering;
             department.OfferingId = offeringId;
 

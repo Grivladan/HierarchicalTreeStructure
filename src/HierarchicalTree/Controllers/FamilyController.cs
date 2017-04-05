@@ -39,6 +39,13 @@ namespace HierarchicalTree.Controllers
             {
                 return NotFound();
             }
+
+            //validation
+            if (business.Families.LastOrDefault(x => x.Name == family.Name) != null)
+            {
+                return BadRequest();
+            }
+
             family.Business = business;
             family.BusinessId = businessId;
 
