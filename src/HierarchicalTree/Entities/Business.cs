@@ -6,5 +6,7 @@ namespace HierarchicalTree.Entities
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public Country LocationCountry { get; set; }
+        public int LocationCountryId { get; set; }
     }
 }
