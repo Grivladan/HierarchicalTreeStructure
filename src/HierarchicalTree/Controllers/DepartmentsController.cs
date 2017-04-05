@@ -86,7 +86,7 @@ namespace HierarchicalTree.Controllers
             return new NoContentResult();
         }
 
-        [HttpGet("{id}", Name = "GetTodo")]
+        [HttpGet("{id}", Name = "GetDepartment")]
         public IActionResult GetById(int id)
         {
             var item = _unitOfWork.Departments.GetById(id);

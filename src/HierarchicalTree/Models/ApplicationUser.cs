@@ -10,6 +10,11 @@ namespace HierarchicalTree.Models
     // Add profile data for application users by adding properties to the ApplicationUser class
     public class ApplicationUser : IdentityUser
     {
-        public ICollection<Organization> Organizations { get; set; }
+        public virtual ICollection<Organization> Organizations { get; set; }
+
+        public ApplicationUser()
+        {
+            Organizations = new List<Organization>();
+        }
     }
 }

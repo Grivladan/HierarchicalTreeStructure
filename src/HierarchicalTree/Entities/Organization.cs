@@ -20,6 +20,11 @@ namespace HierarchicalTree.Entities
         public OrganizationType? Type { get; set; }
         public ApplicationUser Owner { get; set; }
         public string OwnerId { get; set; }
-        public virtual ICollection<Country> Countries { get; set; }
+        public ICollection<Country> Countries { get; set; }
+
+        public Organization()
+        {
+            Countries = new List<Country>();
+        }
     }
 }

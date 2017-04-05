@@ -47,6 +47,7 @@ namespace HierarchicalTree.Controllers
             }
                            
             country.Organization = organization;
+            country.OrganizationId = organizationId;
 
             _unitOfWork.Countries.Create(country);
             _unitOfWork.Save();
@@ -85,7 +86,7 @@ namespace HierarchicalTree.Controllers
             return new NoContentResult();
         }
 
-        [HttpGet("{id}", Name = "GetTodo")]
+        [HttpGet("{id}", Name = "GetCountry")]
         public IActionResult GetById(int id)
         {
             var item = _unitOfWork.Countries.GetById(id);

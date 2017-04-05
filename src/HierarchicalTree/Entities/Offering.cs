@@ -9,6 +9,11 @@ namespace HierarchicalTree.Entities
         public string Name { get; set; }
         public Family Family { get; set; }
         public int FamilyId { get; set; }
-        public virtual ICollection<Department> Departments { get; set; }
+        public ICollection<Department> Departments { get; set; }
+
+        public Offering()
+        {
+            Departments = new List<Department>();
+        }
     }
 }

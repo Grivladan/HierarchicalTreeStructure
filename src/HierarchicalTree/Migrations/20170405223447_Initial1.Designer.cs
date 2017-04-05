@@ -5,17 +5,33 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using HierarchicalTree.Data;
 
-namespace HierarchicalTree.Data.Migrations
+namespace HierarchicalTree.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20170405152947_Migr1")]
-    partial class Migr1
+    [Migration("20170405223447_Initial1")]
+    partial class Initial1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.1")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("HierarchicalTree.Entities.Business", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("LocationCountryId");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LocationCountryId");
+
+                    b.ToTable("Business");
+                });
 
             modelBuilder.Entity("HierarchicalTree.Entities.Country", b =>
                 {
@@ -26,9 +42,61 @@ namespace HierarchicalTree.Data.Migrations
 
                     b.Property<string>("Name");
 
+                    b.Property<int>("OrganizationId");
+
                     b.HasKey("Id");
 
+                    b.HasIndex("OrganizationId");
+
                     b.ToTable("Countries");
+                });
+
+            modelBuilder.Entity("HierarchicalTree.Entities.Department", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Name");
+
+                    b.Property<int>("OfferingId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OfferingId");
+
+                    b.ToTable("Department");
+                });
+
+            modelBuilder.Entity("HierarchicalTree.Entities.Family", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("BusinessId");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BusinessId");
+
+                    b.ToTable("Family");
+                });
+
+            modelBuilder.Entity("HierarchicalTree.Entities.Offering", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("FamilyId");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FamilyId");
+
+                    b.ToTable("Offering");
                 });
 
             modelBuilder.Entity("HierarchicalTree.Entities.Organization", b =>
@@ -203,6 +271,46 @@ namespace HierarchicalTree.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("HierarchicalTree.Entities.Business", b =>
+                {
+                    b.HasOne("HierarchicalTree.Entities.Country", "LocationCountry")
+                        .WithMany("Businesses")
+                        .HasForeignKey("LocationCountryId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("HierarchicalTree.Entities.Country", b =>
+                {
+                    b.HasOne("HierarchicalTree.Entities.Organization", "Organization")
+                        .WithMany("Countries")
+                        .HasForeignKey("OrganizationId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("HierarchicalTree.Entities.Department", b =>
+                {
+                    b.HasOne("HierarchicalTree.Entities.Offering", "Offering")
+                        .WithMany("Departments")
+                        .HasForeignKey("OfferingId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("HierarchicalTree.Entities.Family", b =>
+                {
+                    b.HasOne("HierarchicalTree.Entities.Business", "Business")
+                        .WithMany("Families")
+                        .HasForeignKey("BusinessId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("HierarchicalTree.Entities.Offering", b =>
+                {
+                    b.HasOne("HierarchicalTree.Entities.Family", "Family")
+                        .WithMany("Offerings")
+                        .HasForeignKey("FamilyId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("HierarchicalTree.Entities.Organization", b =>

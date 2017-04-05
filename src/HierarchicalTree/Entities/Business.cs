@@ -9,6 +9,11 @@ namespace HierarchicalTree.Entities
         public string Name { get; set; }
         public Country LocationCountry { get; set; }
         public int LocationCountryId { get; set; }
-        public virtual ICollection<Family> Families { get; set; }
+        public ICollection<Family> Families { get; set; }
+
+        public Business()
+        {
+            Families = new List<Family>();
+        }
     }
 }
