@@ -6,5 +6,7 @@ namespace HierarchicalTree.Entities
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public virtual Offering Offering { get; set; }
+        public int OfferingId { get; set; }
     }
 }

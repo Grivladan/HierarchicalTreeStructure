@@ -239,8 +239,11 @@ C:\Users\Vladyslav\Desktop\HierarchicalTreeStructure\src\HierarchicalTree\Startu
 C:\Users\Vladyslav\Desktop\HierarchicalTreeStructure\src\HierarchicalTree\Controllers\AccountController.cs
 C:\Users\Vladyslav\Desktop\HierarchicalTreeStructure\src\HierarchicalTree\Controllers\BusinessController.cs
 C:\Users\Vladyslav\Desktop\HierarchicalTreeStructure\src\HierarchicalTree\Controllers\CountryController.cs
+C:\Users\Vladyslav\Desktop\HierarchicalTreeStructure\src\HierarchicalTree\Controllers\DepartmentsController.cs
+C:\Users\Vladyslav\Desktop\HierarchicalTreeStructure\src\HierarchicalTree\Controllers\FamilyController.cs
 C:\Users\Vladyslav\Desktop\HierarchicalTreeStructure\src\HierarchicalTree\Controllers\HomeController.cs
 C:\Users\Vladyslav\Desktop\HierarchicalTreeStructure\src\HierarchicalTree\Controllers\ManageController.cs
+C:\Users\Vladyslav\Desktop\HierarchicalTreeStructure\src\HierarchicalTree\Controllers\OfferingController.cs
 C:\Users\Vladyslav\Desktop\HierarchicalTreeStructure\src\HierarchicalTree\Controllers\OrganizationController.cs
 C:\Users\Vladyslav\Desktop\HierarchicalTreeStructure\src\HierarchicalTree\Data\ApplicationDbContext.cs
 C:\Users\Vladyslav\Desktop\HierarchicalTreeStructure\src\HierarchicalTree\Data\Migrations\00000000000000_CreateIdentitySchema.cs
