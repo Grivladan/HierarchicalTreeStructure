@@ -3,6 +3,9 @@ using HierarchicalTree.Entities;
 using HierarchicalTree.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using HierarchicalTree.Data;
+using HierarchicalTree.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace HierarchicalTree.Repository
 {
@@ -24,7 +27,6 @@ namespace HierarchicalTree.Repository
         private IRepository<Family> _familiesRepository;
         private IRepository<Offering> _offeringsRepository;
         private IRepository<Organization> _organizationsRepository;
-        private IRepository<User> _usersRepository;
 
         public IRepository<Business> Businesses
         {
@@ -71,14 +73,6 @@ namespace HierarchicalTree.Repository
             get
             {
                 return _organizationsRepository ?? (_organizationsRepository = _repositoryFactory.CreateRepository<Organization>(_context));
-            }
-        }
-
-        public IRepository<User> Users
-        {
-            get
-            {
-                return _usersRepository ?? (_usersRepository = _repositoryFactory.CreateRepository<User>(_context));
             }
         }
 

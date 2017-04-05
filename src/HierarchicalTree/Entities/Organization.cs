@@ -1,4 +1,5 @@
 ﻿using HierarchicalTree.Interfaces;
+using HierarchicalTree.Models;
 
 namespace HierarchicalTree.Entities
 {
@@ -16,5 +17,7 @@ namespace HierarchicalTree.Entities
         public int Id { get; set; }
         public string Name { get; set; }
         public OrganizationType? Type { get; set; }
+        public ApplicationUser Owner { get; set; }
+        public string OwnerId { get; set; }
     }
 }
