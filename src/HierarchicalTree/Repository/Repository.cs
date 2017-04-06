@@ -4,6 +4,7 @@ using System.Linq;
 using HierarchicalTree.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using HierarchicalTree.Data;
+using System.Linq.Expressions;
 
 namespace HierarchicalTree.Repository
 {
@@ -62,11 +63,6 @@ namespace HierarchicalTree.Repository
             return Query.FirstOrDefault(x => x.Id == id);
         }
 
-        public IEnumerable<T> GetAll()
-        {
-            return Query.ToList();
-        }
-
         public void Update(T item)
         {
             try
@@ -81,6 +77,21 @@ namespace HierarchicalTree.Repository
             {
                 throw ex;
             }
+        }
+
+        public IEnumerable<T> GetAll(params Expression<Func<T, object>>[] navigationProperties)
+        {
+            List<T> list;
+            IQueryable<T> dbQuery = Query;
+
+            //Apply eager loading
+            foreach (Expression<Func<T, object>> navigationProperty in navigationProperties)
+                dbQuery = dbQuery.Include<T, object>(navigationProperty);
+
+            list = dbQuery
+                .AsNoTracking()
+                .ToList<T>();
+            return list;
         }
     }
 }

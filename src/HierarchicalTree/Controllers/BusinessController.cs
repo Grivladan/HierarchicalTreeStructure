@@ -17,6 +17,10 @@ namespace HierarchicalTree.Controllers
         public BusinessController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
+            var country = _unitOfWork.Countries.GetById(2);
+            var business = new Business { Name = "123", LocationCountryId = 2, LocationCountry = country };
+            _unitOfWork.Businesses.Create(business);
+            _unitOfWork.Save();
         }
 
         [HttpGet]

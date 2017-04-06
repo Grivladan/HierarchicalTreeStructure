@@ -17,12 +17,15 @@ namespace HierarchicalTree.Controllers
         public CountryController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
+            Country country = new Country { Name = "Uk" };
+            _unitOfWork.Countries.Create(country);
+            _unitOfWork.Save();
         }
 
         [HttpGet]
         public IActionResult GetAll()
         {
-            var countries = _unitOfWork.Countries.GetAll();
+            var countries = _unitOfWork.Countries.GetAll(x => x.Businesses);
             return Ok(countries);
         }
 
