@@ -9,6 +9,7 @@ using HierarchicalTree.Entities;
 using HierarchicalTree.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HierarchicalTree.Controllers
 {
@@ -31,6 +32,7 @@ namespace HierarchicalTree.Controllers
         private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Create([FromBody] Organization organization)
         {
                 _logger.LogInformation(LoggingEvents.CREATE_ITEM, "Create organization");
@@ -49,6 +51,7 @@ namespace HierarchicalTree.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize]
         public IActionResult Update(int id, [FromBody] Organization item)
         {
             _logger.LogInformation(LoggingEvents.UPDATE_ITEM, "Update organization {id}", id);
@@ -71,6 +74,7 @@ namespace HierarchicalTree.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize]
         public IActionResult Delete(int id)
         {
             _logger.LogInformation(LoggingEvents.DELETE_ITEM, "Delete organization {id}", id);

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using HierarchicalTree.Interfaces;
 using HierarchicalTree.Entities;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HierarchicalTree.Controllers
 {
@@ -31,6 +32,7 @@ namespace HierarchicalTree.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult Create(int familyId, [FromBody] Offering offering)
         {
             _logger.LogInformation(LoggingEvents.CREATE_ITEM, "Create offering");
@@ -64,6 +66,7 @@ namespace HierarchicalTree.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize]
         public IActionResult Update(int id, [FromBody] Offering item)
         {
             _logger.LogInformation(LoggingEvents.UPDATE_ITEM, "Update offering {id}", id);
@@ -86,6 +89,7 @@ namespace HierarchicalTree.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize]
         public IActionResult Delete(int id)
         {
             _logger.LogInformation(LoggingEvents.DELETE_ITEM, "Delete offering {id}", id);
