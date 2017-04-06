@@ -93,5 +93,21 @@ namespace HierarchicalTree.Repository
                 .ToList<T>();
             return list;
         }
+
+        public virtual IEnumerable<T> Find(Func<T, bool> where,
+           params Expression<Func<T, object>>[] navigationProperties)
+        {
+            IQueryable<T> dbQuery = Query;
+
+            //Apply eager loading
+            foreach (Expression<Func<T, object>> navigationProperty in navigationProperties)
+                dbQuery = dbQuery.Include<T, object>(navigationProperty);
+
+            List<T> list = dbQuery
+                    .AsNoTracking()
+                    .Where(where)
+                    .ToList<T>();
+            return list;
+        }
     }
 }

@@ -12,6 +12,8 @@ namespace HierarchicalTree.Interfaces
         void Update(T item);
         void Delete(int id);
         IEnumerable<T> GetAll(params Expression<Func<T, object>>[] navigationProperties);
+        IEnumerable<T> Find(Func<T, bool> where,
+           params Expression<Func<T, object>>[] navigationProperties);
 
         IQueryable<T> Query { get; }
     }

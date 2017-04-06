@@ -84,6 +84,18 @@ namespace HierarchicalTree.Controllers
             return new ObjectResult(item);
         }
 
+        /*
+        [HttpGet("{id}", Name = "GetTree")]
+        public IActionResult GetTree()
+        {
+            var item = _unitOfWork.Organizations.;
+            if (item == null)
+            {
+                return NotFound();
+            }
+            return new ObjectResult(item);
+        }*/
+
         [HttpGet]
         public IActionResult GetAll()
         {
