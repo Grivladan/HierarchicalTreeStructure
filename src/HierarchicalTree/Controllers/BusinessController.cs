@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using HierarchicalTree.Interfaces;
 using HierarchicalTree.Entities;
+using Microsoft.Extensions.Logging;
 
 namespace HierarchicalTree.Controllers
 {
@@ -14,9 +15,12 @@ namespace HierarchicalTree.Controllers
     public class BusinessController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
-        public BusinessController(IUnitOfWork unitOfWork)
+        private readonly ILogger _logger;
+
+        public BusinessController(IUnitOfWork unitOfWork, ILogger<BusinessController> logger)
         {
             _unitOfWork = unitOfWork;
+            _logger = logger;
         }
 
         [HttpGet]
@@ -29,20 +33,24 @@ namespace HierarchicalTree.Controllers
         [HttpPost]
         public IActionResult Create(int countryId, [FromBody] Business business)
         {
+            _logger.LogInformation(LoggingEvents.CREATE_ITEM, "Create business");
             if (business == null)
             {
+                _logger.LogWarning(LoggingEvents.ITEM_IS_NULL, "Passed business is null");
                 return BadRequest();
             }
 
             var country = _unitOfWork.Countries.GetById(countryId);
             if (country == null)
             {
+                _logger.LogWarning(LoggingEvents.GET_ITEM_NOTFOUND, "Country with id {id} doesn't exist", countryId);
                 return NotFound();
             }
 
             //validation
             if (country.Businesses.LastOrDefault(x => x.Name == business.Name) != null)
             {
+                _logger.LogWarning(LoggingEvents.VALIDATION_EXCEPTION, "Business inside each country must be unique");
                 return BadRequest();
             }
 
@@ -58,14 +66,17 @@ namespace HierarchicalTree.Controllers
         [HttpPut("{id}")]
         public IActionResult Update(int id, [FromBody] Business item)
         {
+            _logger.LogInformation(LoggingEvents.UPDATE_ITEM, "Update business {id}", id);
             if (item == null)
             {
+                _logger.LogWarning(LoggingEvents.ITEM_IS_NULL, "Update business {id}", id);
                 return BadRequest();
             }
 
             var todo = _unitOfWork.Businesses.GetById(id);
             if (todo == null)
             {
+                _logger.LogWarning(LoggingEvents.GET_ITEM_NOTFOUND, "Business with id {id} doesn't exist", id);
                 return NotFound();
             }
 
@@ -76,9 +87,11 @@ namespace HierarchicalTree.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
+            _logger.LogInformation(LoggingEvents.DELETE_ITEM, "Delete business {id}", id);
             var todo = _unitOfWork.Businesses.GetById(id);
             if (todo == null)
             {
+                _logger.LogWarning(LoggingEvents.GET_ITEM_NOTFOUND, "Business with id {id} doesn't exist", id);
                 return NotFound();
             }
 

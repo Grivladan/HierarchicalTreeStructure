@@ -8,6 +8,7 @@ using HierarchicalTree.Interfaces;
 using HierarchicalTree.Entities;
 using HierarchicalTree.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Logging;
 
 namespace HierarchicalTree.Controllers
 {
@@ -17,11 +18,14 @@ namespace HierarchicalTree.Controllers
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly ILogger _logger;
  
-        public OrganizationController(IUnitOfWork unitOfWork, UserManager<ApplicationUser> userManager)
+        public OrganizationController(IUnitOfWork unitOfWork, UserManager<ApplicationUser> userManager,
+            ILogger<OrganizationController> logger)
         {
             _unitOfWork = unitOfWork;
             _userManager = userManager;
+            _logger = logger;
         }
 
         private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
@@ -29,59 +33,69 @@ namespace HierarchicalTree.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] Organization organization)
         {
-            if (organization == null)
-            {
-                return BadRequest();
-            }
+                _logger.LogInformation(LoggingEvents.CREATE_ITEM, "Create organization");
+                if (organization == null)
+                {
+                    _logger.LogWarning(LoggingEvents.ITEM_IS_NULL, "Passed organization is null");
+                    return BadRequest();
+                }
 
-            organization.Owner = await _userManager.GetUserAsync(HttpContext.User);
-            organization.OwnerId = organization.Owner.Id;
-            _unitOfWork.Organizations.Create(organization);
-            _unitOfWork.Save();
+                organization.Owner = await _userManager.GetUserAsync(HttpContext.User);
+                organization.OwnerId = organization.Owner.Id;
+                _unitOfWork.Organizations.Create(organization);
+                _unitOfWork.Save();
 
-            return Ok(organization);
+                return Ok(organization);
         }
 
         [HttpPut("{id}")]
         public IActionResult Update(int id, [FromBody] Organization item)
         {
+            _logger.LogInformation(LoggingEvents.UPDATE_ITEM, "Update organization {id}", id);
             if (item == null)
             {
+                _logger.LogWarning(LoggingEvents.ITEM_IS_NULL, "Update organization {id}", id);
                 return BadRequest();
             }
 
             var todo = _unitOfWork.Organizations.GetById(id);
             if (todo == null)
             {
+                _logger.LogWarning(LoggingEvents.GET_ITEM_NOTFOUND, "Organization with id {id} doesn't exist", id);
                 return NotFound();
             }
 
             _unitOfWork.Organizations.Update(item);
+            _unitOfWork.Save();
             return new NoContentResult();
         }
 
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            var todo = _unitOfWork.Organizations.GetById(id);
-            if (todo == null)
+            _logger.LogInformation(LoggingEvents.DELETE_ITEM, "Delete organization {id}", id);
+            var organization = _unitOfWork.Organizations.GetById(id);
+            if (organization == null)
             {
+                _logger.LogWarning(LoggingEvents.GET_ITEM_NOTFOUND, "Organization with id {id} doesn't exist", id);
                 return NotFound();
             }
 
             _unitOfWork.Organizations.Delete(id);
+            _unitOfWork.Save();
             return new NoContentResult();
         }
 
         [HttpGet("{id}", Name = "GetOrganization")]
         public IActionResult GetById(int id)
         {
-            var item = _unitOfWork.Organizations.GetById(id);
-            if (item == null)
+            var organization = _unitOfWork.Organizations.GetById(id);
+            if (organization == null)
             {
+                _logger.LogWarning(LoggingEvents.GET_ITEM_NOTFOUND, "Organization with id {id} doesn't exist", id);
                 return NotFound();
             }
-            return new ObjectResult(item);
+            return new ObjectResult(organization);
         }
 
         //tree upper level, get list of organization of current user

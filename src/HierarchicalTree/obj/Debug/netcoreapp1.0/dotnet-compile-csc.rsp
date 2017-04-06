@@ -248,6 +248,7 @@
 "C:\Users\Vladyslav\Desktop\HierarchicalTreeStructure\src\HierarchicalTree\Entities\Family.cs"
 "C:\Users\Vladyslav\Desktop\HierarchicalTreeStructure\src\HierarchicalTree\Entities\Offering.cs"
 "C:\Users\Vladyslav\Desktop\HierarchicalTreeStructure\src\HierarchicalTree\Entities\Organization.cs"
+"C:\Users\Vladyslav\Desktop\HierarchicalTreeStructure\src\HierarchicalTree\Infrastructure\LoggingEvents.cs"
 "C:\Users\Vladyslav\Desktop\HierarchicalTreeStructure\src\HierarchicalTree\Interfaces\IEntity.cs"
 "C:\Users\Vladyslav\Desktop\HierarchicalTreeStructure\src\HierarchicalTree\Interfaces\IRepository.cs"
 "C:\Users\Vladyslav\Desktop\HierarchicalTreeStructure\src\HierarchicalTree\Interfaces\IRepositoryFactory.cs"
