@@ -84,22 +84,13 @@ namespace HierarchicalTree.Controllers
             return new ObjectResult(item);
         }
 
-        /*
-        [HttpGet("{id}", Name = "GetTree")]
+        //tree upper level, get list of organization of current user
+        [HttpGet(Name = "GetTree")]
         public IActionResult GetTree()
         {
-            var item = _unitOfWork.Organizations.;
-            if (item == null)
-            {
-                return NotFound();
-            }
-            return new ObjectResult(item);
-        }*/
-
-        [HttpGet]
-        public IActionResult GetAll()
-        {
-            var organizations = _unitOfWork.Organizations.GetAll();
+            var userId = _userManager.GetUserId(HttpContext.User);
+            var organizations = _unitOfWork.Organizations.Find( x => x.OwnerId == userId, x=>x.Countries);
+ 
             return Ok(organizations);
         }
     }

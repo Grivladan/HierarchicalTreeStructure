@@ -17,10 +17,6 @@ namespace HierarchicalTree.Controllers
         public BusinessController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
-            var country = _unitOfWork.Countries.GetById(2);
-            var business = new Business { Name = "123", LocationCountryId = 2, LocationCountry = country };
-            _unitOfWork.Businesses.Create(business);
-            _unitOfWork.Save();
         }
 
         [HttpGet]
@@ -90,15 +86,12 @@ namespace HierarchicalTree.Controllers
             return new NoContentResult();
         }
 
-        [HttpGet("{id}", Name = "GetBusiness")]
-        public IActionResult GetById(int id)
+        //expand business inside country
+        [HttpGet("{countryId}", Name = "GetBusiness")]
+        public IActionResult GetById(int countryId)
         {
-            var item = _unitOfWork.Businesses.GetById(id);
-            if (item == null)
-            {
-                return NotFound();
-            }
-            return new ObjectResult(item);
+            var businesses = _unitOfWork.Businesses.Find(x => x.LocationCountryId == countryId, x => x.Families);
+            return Ok(businesses);
         }
     }
 }

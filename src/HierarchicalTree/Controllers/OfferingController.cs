@@ -86,15 +86,12 @@ namespace HierarchicalTree.Controllers
             return new NoContentResult();
         }
 
-        [HttpGet("{id}", Name = "GetOffering")]
-        public IActionResult GetById(int id)
+        //add expand for families
+        [HttpGet("{familyId}", Name = "GetOfferings")]
+        public IActionResult GetById(int familyId)
         {
-            var item = _unitOfWork.Offerings.GetById(id);
-            if (item == null)
-            {
-                return NotFound();
-            }
-            return new ObjectResult(item);
+            var offerings = _unitOfWork.Offerings.Find( x => x.FamilyId == familyId, x => x.Departments);
+            return new ObjectResult(offerings);
         }
     }
 }

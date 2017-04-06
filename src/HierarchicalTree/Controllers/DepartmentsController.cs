@@ -90,10 +90,6 @@ namespace HierarchicalTree.Controllers
         public IActionResult GetById(int id)
         {
             var item = _unitOfWork.Departments.GetById(id);
-            if (item == null)
-            {
-                return NotFound();
-            }
             return new ObjectResult(item);
         }
     }
